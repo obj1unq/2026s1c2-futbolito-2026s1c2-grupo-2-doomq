@@ -1,0 +1,16 @@
+import objetos.*
+
+describe "Pelota pateada de taquito"{
+    method initialize(){
+        game.cellSize(40)
+	    game.width(15)
+	    game.height(10)
+        pelota.position(game.at(3,5))
+        lionel.position(game.at(3,5))
+    }
+    test "Pelota puede ser pateada"{
+        assert.equals(game.at(3,5), lionel.position())
+        assert.equals(game.at(3,5), pelota.position())
+        lionel.patearDeTaquito()
+    }
+}

@@ -4,6 +4,11 @@ import wollok.game.*
 object lionel {
 	
 	var property position = game.at(3,5)
+
+	// metodo setter para test
+	method position(_position){  
+		position = _position
+	}
 	
 	method image() {
 		return "lionel-titular.png"
@@ -16,23 +21,31 @@ object lionel {
 	method avanzar() {
 		position = game.at((game.width() - 1).min(position.x() + 1), position.y()) 
 	}
-	method taquito(){
+
+	method patearDeTaquito(){
 		self.validarPosicionParaTaquito()
 		pelota.serPateadaDeTaquito()
 	}
-	
+
 	method validarPosicionParaTaquito(){
 		if (not(game.onSameCell(pelota.position(), position))){
 			self.error("No puedo hacer un taquito sin pelota")
 		}
 	}
+
 }
 
 
 object pelota {
 	const property image="pelota.png"
 	var property position = game.at(5,5)
+	// metodo setter para test
+	method position(_position){  
+		position = _position
+	}
+
 	method serPateadaDeTaquito(){
 		position = game.at (0.max((position.x() - 2)), position.y())
 	}
+
 }
