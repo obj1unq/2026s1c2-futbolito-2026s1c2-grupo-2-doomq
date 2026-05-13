@@ -16,7 +16,18 @@ object lionel {
 	method avanzar() {
 		position = game.at((game.width() - 1).min(position.x() + 1), position.y()) 
 	}
+	
+	method patear() {
+      self.validarMismaPosicion()
+      pelota.serPateada()
+    }
 
+	method validarMismaPosicion() {
+	  if (position != pelota.position()) {
+        self.error("Lionel no esta sobre la pelota")
+      }
+	}
+	
 	method cambiarEstado() {
 		self.validarSiEstaEnElBordeIzq()
 		estado = estado.siguienteEstado()
@@ -44,5 +55,13 @@ object lionel {
 
 object pelota {
 	const property image="pelota.png"
-	var property position = game.at(5,5)	
+	var property position = game.at(5,5)
+
+	method serPateada() {
+	  position = game.at((game.width() - 1).min(position.x() + 3), position.y())
+	}
+
+	method position(_position) {
+	  position = _position
+	}
 }
