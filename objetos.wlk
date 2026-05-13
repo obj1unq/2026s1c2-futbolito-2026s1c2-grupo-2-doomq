@@ -1,14 +1,15 @@
 /** First Wollok example */
 import wollok.game.*
+import estado.*
+
 
 object lionel {
-	
+	var estado = titular
 	var property position = game.at(3,5)
 	
 	method image() {
-		return "lionel-titular.png"
+		return estado.image(self)
 	}
-
 	method retroceder() {
 		position = game.at(0.max(position.x() - 1), position.y()) 
 	}
@@ -30,6 +31,39 @@ object lionel {
 	  
 	}
 	
+	method patear() {
+      self.validarMismaPosicion()
+      pelota.serPateada()
+    }
+
+	method validarMismaPosicion() {
+	  if (position != pelota.position()) {
+        self.error("Lionel no esta sobre la pelota")
+      }
+	}
+	
+	method cambiarEstado() {
+		self.validarSiEstaEnElBordeIzq()
+		estado = estado.siguienteEstado()
+	}
+
+	method validarSiEstaEnElBordeIzq() {
+	  if(not self.estaEnPosicion()){
+		self.error("No puede cambiar de camiseta, no esta en posición.")
+	  }
+	}
+
+	method estaEnPosicion() {
+	  return position.x() == 0
+	}
+
+	method position(_position) { //el setter solo lo necesito para testear
+		position = _position 
+	}
+
+	method estado() {  //El getter es para el test
+	  return estado
+	}
 }
 
 
@@ -48,5 +82,12 @@ object pelota {
 	  position = position.down(1)
 	}
 
+	method serPateada() {
+	  position = game.at((game.width() - 1).min(position.x() + 3), position.y())
+	}
+
+	method position(_position) {
+	  position = _position
+	}
 }
 
