@@ -1,5 +1,7 @@
 import wollok.game.*
 import objetos.*
+import estado.*
+
 
 program futbolito{
 
@@ -12,8 +14,7 @@ program futbolito{
 	keyboard.left().onPressDo({lionel.retroceder()})
 	keyboard.right().onPressDo({lionel.avanzar()})
 	keyboard.p().onPressDo({lionel.patear()})
+	keyboard.c().onPressDo({lionel.cambiarEstado()})
 
 	game.start()
-
-
 }
