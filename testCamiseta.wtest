@@ -1,0 +1,29 @@
+import objetos.*
+import estado.*
+
+describe "Lionel y sus cambios de camisetas" {
+    method initialize() {
+		game.height(10) //configurar el tamaño es importante 
+		game.width(10)
+	}
+  test "Validar que no se pueda cambiar de camista si no esta en el borde izquierdo" {
+    lionel.position(game.at(3,6))
+    assert.throwsException({lionel.cambiarEstado()})
+  }
+
+  test "Validar que si pueda cambiar la camiseta a suplente" {
+    lionel.position(game.at(0,3))
+    lionel.cambiarEstado()
+
+    assert.equals(suplente, lionel.estado())
+  }
+
+  test "Validar que cambiar camiseta a suplente" {
+    lionel.position(game.at(0,3))
+    lionel.cambiarEstado()
+    lionel.cambiarEstado()
+
+    assert.equals(titular, lionel.estado())
+  }
+}
+
