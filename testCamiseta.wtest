@@ -4,7 +4,8 @@ import estado.*
 describe "Lionel y sus cambios de camisetas" {
     method initialize() {
 		game.height(10) //configurar el tamaño es importante 
-		game.width(10)
+		game.width(15)
+        lionel.position(game.at(3,5))
 	}
   test "Validar que no se pueda cambiar de camista si no esta en el borde izquierdo" {
     lionel.position(game.at(3,6))
