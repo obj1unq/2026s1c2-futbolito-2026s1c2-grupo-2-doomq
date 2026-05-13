@@ -1,0 +1,48 @@
+import objetos.*
+describe "Lionel patea la pelota" {
+
+  method initialize(){
+    game.cellSize(40)
+	game.width(15)
+	game.height(10)
+  }
+  test "Lionel le quiere pegar a la pelota pero no esta en la misma posicion" {
+
+    // Assert
+    assert.equals(game.at(3,5), lionel.position())
+    assert.equals(game.at(5,5), pelota.position())
+    assert.throwsException({ lionel.patear() })
+  }
+
+  test "Lionel patea la pelota " {
+
+    // Set
+    lionel.position(game.at(5,5))
+
+    // Assert
+    assert.equals(game.at(5,5), lionel.position())
+    assert.equals(game.at(5,5), pelota.position())
+
+    // Act
+    lionel.patear()
+
+    // Assert
+    assert.equals(game.at(8,5), pelota.position())
+  }
+
+  test "La pelota no excede el terreno" {
+    // Set
+    lionel.position(game.at(13,5))
+    pelota.position(game.at(13,5))
+
+    // Assert
+    assert.equals(game.at(13,5), lionel.position())
+    assert.equals(game.at(13,5), pelota.position())
+
+    // Act
+    lionel.patear()
+
+    // Assert
+    assert.equals(game.at(14,5), pelota.position())
+  }
+}
