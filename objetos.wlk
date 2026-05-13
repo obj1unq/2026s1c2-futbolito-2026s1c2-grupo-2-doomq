@@ -34,10 +34,6 @@ object lionel {
 		}
 	}
 
-	method position() {
-	  return position
-	}
-
 	method levantarPelota() {
 	  if (pelota.position() == position) {
 		pelota.subir()
@@ -85,10 +81,6 @@ object pelota {
 	// metodo setter para test
 	method serPateadaDeTaquito(){
 		position = game.at (0.max((position.x() - 2)), position.y())
-	}
-
-	method position() {
-	  return position
 	}
 
 	method subir() {
