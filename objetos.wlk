@@ -15,6 +15,7 @@ object lionel {
 	method image() {
 		return estado.image(self)
 	}
+
 	method retroceder() {
 		position = game.at(0.max(position.x() - 1), position.y()) 
 	}
@@ -24,14 +25,8 @@ object lionel {
 	}
 
 	method patearDeTaquito(){
-		self.validarPosicionParaTaquito()
+		self.validarMismaPosicion()
 		pelota.serPateadaDeTaquito()
-	}
-
-	method validarPosicionParaTaquito(){
-		if (not(game.onSameCell(pelota.position(), position))){
-			self.error("No puedo hacer un taquito sin pelota")
-		}
 	}
 
 	method levantarPelota() {
@@ -39,8 +34,6 @@ object lionel {
 		pelota.subir()
 	  	game.schedule(2000, {pelota.bajar()})
 	  }
-	  
-	  
 	}
 	
 	method patear() {
@@ -74,7 +67,6 @@ object lionel {
 	}
 }
 
-
 object pelota {
 	const property image="pelota.png"
 	var property position = game.at(5,5)
@@ -86,6 +78,7 @@ object pelota {
 	method subir() {
 	  position = position.up(1)
 	}
+	
 	method bajar() {
 	  position = position.down(1)
 	}
