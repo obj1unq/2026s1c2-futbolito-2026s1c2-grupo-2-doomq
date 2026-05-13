@@ -8,9 +8,17 @@ describe "Pelota pateada de taquito"{
         pelota.position(game.at(3,5))
         lionel.position(game.at(3,5))
     }
-    test "Pelota puede ser pateada"{
+    test "Lionel patea la pelota de taquito"{
         assert.equals(game.at(3,5), lionel.position())
         assert.equals(game.at(3,5), pelota.position())
         lionel.patearDeTaquito()
+        assert.equals(game.at(1,5), pelota.position())
+        assert.equals(game.at(3,5), lionel.position())
+    }
+    test "Lionel intenta patear la pelota de taquito pero no puede "{
+        pelota.position(game.at(4,5))
+        assert.equals(game.at(3,5), lionel.position())
+        assert.equals(game.at(4,5), pelota.position())
+        assert.throwsException({lionel.patearDeTaquito()})
     }
 }
