@@ -18,8 +18,9 @@ object lionel {
 	}
 	method taquito(){
 		self.validarPosicionParaTaquito()
-		pelota.moverseParaTaquito()
+		pelota.serPateadaDeTaquito()
 	}
+	
 	method validarPosicionParaTaquito(){
 		if (not(game.onSameCell(pelota.position(), position))){
 			self.error("No puedo hacer un taquito sin pelota")
@@ -31,7 +32,7 @@ object lionel {
 object pelota {
 	const property image="pelota.png"
 	var property position = game.at(5,5)
-	method moverseParaTaquito(){
+	method serPateadaDeTaquito(){
 		position = game.at (0.max((position.x() - 2)), position.y())
-	}	
+	}
 }
