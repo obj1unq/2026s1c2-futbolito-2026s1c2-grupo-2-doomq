@@ -1,0 +1,22 @@
+import objetos.*
+
+describe "Funcion Levantar pelota" {
+   method initialize() {
+     game.width(15)
+     game.height(15)
+     
+   } 
+  test "Levantar al estar encima de la pelota" {
+    pelota.position(game.at(5,5))
+    lionel.position(game.at(5,5))
+    lionel.levantarPelota()
+    assert.equals(pelota.position().y(), 6)
+    }
+   
+   test "La pelota no se levanta al no estar encima" {
+    pelota.position(game.at(5,5))
+    lionel.position(game.at(3,5))
+    lionel.levantarPelota()
+    assert.equals(pelota.position().y(), 5)
+   }
+}
