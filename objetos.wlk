@@ -2,6 +2,7 @@
 import wollok.game.*
 import estado.*
 
+
 object lionel {
 	var estado = titular
 	var property position = game.at(3,5)
@@ -15,6 +16,19 @@ object lionel {
 	
 	method avanzar() {
 		position = game.at((game.width() - 1).min(position.x() + 1), position.y()) 
+	}
+
+	method position() {
+	  return position
+	}
+
+	method levantarPelota() {
+	  if (pelota.position() == position) {
+		pelota.subir()
+	  	game.schedule(2000, {pelota.bajar()})
+	  }
+	  
+	  
 	}
 	
 	method patear() {
@@ -57,6 +71,17 @@ object pelota {
 	const property image="pelota.png"
 	var property position = game.at(5,5)
 
+	method position() {
+	  return position
+	}
+
+	method subir() {
+	  position = position.up(1)
+	}
+	method bajar() {
+	  position = position.down(1)
+	}
+
 	method serPateada() {
 	  position = game.at((game.width() - 1).min(position.x() + 3), position.y())
 	}
@@ -65,3 +90,4 @@ object pelota {
 	  position = _position
 	}
 }
+
