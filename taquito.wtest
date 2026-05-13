@@ -26,4 +26,30 @@ describe "Pelota pateada de taquito"{
         assert.equals(game.at(4,5), pelota.position())
         assert.throwsException({lionel.patearDeTaquito()})
     }
+    test "Lionel intenta patear de taquito fuera del tablero"{
+        //initialize
+        pelota.position(game.at(0,5))
+        lionel.position(game.at(0,5))
+        //assert
+        assert.equals(game.at(0,5), lionel.position())
+        assert.equals(game.at(0,5), pelota.position())
+        //act
+        lionel.patearDeTaquito()
+        //assert
+        assert.equals(game.at(0,5), lionel.position())
+        assert.equals(game.at(0,5), pelota.position())
+    }
+    test "Lionel patea de taquito 1 sola celda"{
+        //initialize
+        pelota.position(game.at(1,5))
+        lionel.position(game.at(1,5))
+        //assert
+        assert.equals(game.at(1,5), lionel.position())
+        assert.equals(game.at(1,5), pelota.position())
+        //act
+        lionel.patearDeTaquito()
+        //assert
+        assert.equals(game.at(1,5), lionel.position())
+        assert.equals(game.at(0,5), pelota.position())
+    }
 }
